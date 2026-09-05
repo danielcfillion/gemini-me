@@ -1,0 +1,6 @@
+{
+  "name": "Gemini Me",
+  "description": "A journal that quietly becomes a personal assistant. Write about your day and let Mini-Me figure out the rest.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

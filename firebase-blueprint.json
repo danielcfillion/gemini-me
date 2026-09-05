@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "UserProfile": {
+      "path": "users/{userId}",
+      "description": "User profile, configuration, and coach preferences",
+      "fields": {
+        "displayName": { "type": "string", "description": "User's full name from authentication" },
+        "email": { "type": "string", "description": "User's email address" },
+        "role": { "type": "string", "description": "Role access control: 'user' or 'admin'" },
+        "coachTone": { "type": "string", "description": "Coach tone preference: 'warm' or 'blunt'" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of account creation" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      }
+    },
+    "JournalEntry": {
+      "path": "users/{userId}/entries/{date}",
+      "description": "Daily journal entry containing chronological messages and AI summary",
+      "fields": {
+        "date": { "type": "string", "description": "Calendar day key formatted YYYY-MM-DD" },
+        "messages": {
+          "type": "array",
+          "description": "Ordered multi-turn dialog entries between user and Mini-Me",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "role": { "type": "string", "enum": ["user", "model"] },
+              "text": { "type": "string" },
+              "ts": { "type": "string" }
+            }
+          }
+        },
+        "summary": { "type": "string", "description": "Short distilled summary of the day updated by Mini-Me" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "description": "Last updated timestamp" }
+      }
+    }
+  }
+}

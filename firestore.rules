@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny for all unspecified paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /users/{userId} {
+      // User can read their own profile
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // User can create their profile only with default role 'user'
+      allow create: if request.auth != null && request.auth.uid == userId
+                    && (!('role' in request.resource.data) || request.resource.data.role == 'user');
+      
+      // User can update their profile (e.g. coachTone, displayName), but cannot escalate role or change createdAt
+      allow update: if request.auth != null && request.auth.uid == userId
+                    && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'createdAt']));
+
+      // Entries subcollection: isolated to owner only
+      match /entries/{entryId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Proposals subcollection: human-in-the-loop proposals isolated to owner
+      match /proposals/{proposalId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Interactions subcollection
+      match /interactions/{interactionId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
