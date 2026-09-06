@@ -49,6 +49,18 @@ export const Navigation: React.FC<NavigationProps> = ({ currentTab, onTabChange 
           History
         </button>
         <button
+          id="nav-tab-boards"
+          type="button"
+          onClick={() => onTabChange('boards')}
+          className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors cursor-pointer ${
+            currentTab === 'boards'
+              ? 'text-[#1F1E1D] dark:text-[#FAF8F5] bg-[#EFECE6] dark:bg-[#282522]'
+              : 'text-[#74706B] dark:text-[#A09B94] hover:text-[#1F1E1D] dark:hover:text-[#FAF8F5]'
+          }`}
+        >
+          Boards
+        </button>
+        <button
           id="nav-tab-profile"
           type="button"
           onClick={() => onTabChange('profile')}
@@ -60,8 +72,6 @@ export const Navigation: React.FC<NavigationProps> = ({ currentTab, onTabChange 
         >
           Profile
         </button>
-        {/* Placeholder slot preserved for upcoming Boards feature without cluttering */}
-        <span className="hidden sm:inline-block w-4" aria-hidden="true" />
       </nav>
     </header>
   );

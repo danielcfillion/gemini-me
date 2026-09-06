@@ -31,8 +31,103 @@
           }
         },
         "summary": { "type": "string", "description": "Short distilled summary of the day updated by Mini-Me" },
+        "mood": {
+          "type": "object",
+          "description": "Daily mood score (1-5) and descriptive label",
+          "properties": {
+            "score": { "type": "number", "minimum": 1, "maximum": 5 },
+            "label": { "type": "string" }
+          }
+        },
         "createdAt": { "type": "string", "description": "Creation timestamp" },
         "updatedAt": { "type": "string", "description": "Last updated timestamp" }
+      }
+    },
+    "Board": {
+      "path": "users/{userId}/boards/{boardId}",
+      "description": "Organizational boards/categories for notes (Work, Family, Friends, Health, Money, Leisure, Goals, plus custom)",
+      "fields": {
+        "name": { "type": "string", "description": "Display name of the board" },
+        "slug": { "type": "string", "description": "Unique URL-friendly slug or identifier" },
+        "description": { "type": "string", "description": "Brief description of the board purpose" },
+        "createdAt": { "type": "string", "description": "Creation ISO timestamp" }
+      }
+    },
+    "Note": {
+      "path": "users/{userId}/notes/{noteId}",
+      "description": "Multi-board notes, tasks, ideas, habits, wins, worries, or facts extracted or created manually",
+      "fields": {
+        "text": { "type": "string", "description": "Single text field describing the note" },
+        "type": { "type": "string", "enum": ["task", "idea", "plan", "habit", "win", "worry", "fact"] },
+        "boards": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Array of board names this note belongs to"
+        },
+        "status": { "type": "string", "enum": ["open", "done", "dropped"] },
+        "dueDate": { "type": "string", "description": "ISO date string or null" },
+        "sourceEntryId": { "type": "string", "description": "Source journal entry date or id" },
+        "sourceQuote": { "type": "string", "description": "Direct user quote from journal entry" },
+        "createdAt": { "type": "string", "description": "Creation ISO timestamp" },
+        "updatedAt": { "type": "string", "description": "Last update ISO timestamp" }
+      }
+    },
+    "Proposal": {
+      "path": "users/{userId}/proposals/{proposalId}",
+      "description": "Human-in-the-loop pending AI extractions requiring explicit user approval",
+      "fields": {
+        "status": { "type": "string", "enum": ["pending", "applied", "discarded"] },
+        "entryDate": { "type": "string", "description": "Originating entry date YYYY-MM-DD" },
+        "mood": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number", "minimum": 1, "maximum": 5 },
+            "label": { "type": "string" }
+          }
+        },
+        "suggestedNewBoard": { "type": "string", "description": "Optional newly discovered board name" },
+        "proposedNotes": {
+          "type": "array",
+          "description": "List of proposed notes awaiting user review",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "text": { "type": "string" },
+              "type": { "type": "string" },
+              "boards": { "type": "array", "items": { "type": "string" } },
+              "status": { "type": "string" },
+              "dueDate": { "type": "string" },
+              "sourceQuote": { "type": "string" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "description": "Creation ISO timestamp" },
+        "expiresAt": { "type": "string", "description": "Expiry timestamp (7 days after creation)" }
+      }
+    },
+    "CoachSession": {
+      "path": "users/{userId}/coachSessions/{sessionId}",
+      "description": "Multi-turn coach conversation session with Mini-Me",
+      "fields": {
+        "id": { "type": "string", "description": "Unique session ID" },
+        "title": { "type": "string", "description": "Conversation topic title" },
+        "createdAt": { "type": "string", "description": "Creation ISO timestamp" },
+        "updatedAt": { "type": "string", "description": "Last updated ISO timestamp" },
+        "messages": {
+          "type": "array",
+          "description": "Multi-turn conversation messages with Mini-Me",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "role": { "type": "string", "enum": ["user", "model"] },
+              "text": { "type": "string" },
+              "proposalId": { "type": "string" },
+              "ts": { "type": "string" }
+            }
+          }
+        }
       }
     }
   }

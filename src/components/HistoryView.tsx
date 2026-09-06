@@ -55,9 +55,28 @@ export const HistoryView: React.FC<HistoryViewProps> = ({ user }) => {
 
         {/* Selected Date Header */}
         <div className="border-b border-[#EAE5DC] dark:border-[#2C2926] pb-4">
-          <h2 className="font-journal text-3xl font-medium tracking-tight text-[#1A1918] dark:text-[#EFECE6]">
-            {formatEntryDateHeader(selectedEntry.date)}
-          </h2>
+          <div className="flex items-center gap-3">
+            <h2 className="font-journal text-3xl font-medium tracking-tight text-[#1A1918] dark:text-[#EFECE6]">
+              {formatEntryDateHeader(selectedEntry.date)}
+            </h2>
+            {selectedEntry.mood && (
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 dark:bg-stone-800 px-2.5 py-0.5 text-xs font-medium text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700/50"
+                title={`Mood Score: ${selectedEntry.mood.score}/5`}
+              >
+                <span
+                  className={`h-2 w-2 rounded-full ${
+                    selectedEntry.mood.score >= 4
+                      ? 'bg-emerald-500'
+                      : selectedEntry.mood.score === 3
+                      ? 'bg-amber-400'
+                      : 'bg-rose-400'
+                  }`}
+                />
+                <span>{selectedEntry.mood.label}</span>
+              </span>
+            )}
+          </div>
           <p className="text-xs text-[#7A756E] dark:text-[#918B82] mt-1">
             Read-only archive · {selectedEntry.date}
           </p>
@@ -155,9 +174,28 @@ export const HistoryView: React.FC<HistoryViewProps> = ({ user }) => {
                 className="w-full text-left py-5 px-3 -mx-3 rounded-lg hover:bg-[#F4EFE7] dark:hover:bg-[#1E1C1A] transition cursor-pointer group"
               >
                 <div className="flex items-baseline justify-between mb-1.5">
-                  <span className="font-journal text-base font-semibold text-[#201F1E] dark:text-[#EAE6E1] group-hover:text-[#000] dark:group-hover:text-[#FFF]">
-                    {formatEntryDateHeader(entry.date)}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-journal text-base font-semibold text-[#201F1E] dark:text-[#EAE6E1] group-hover:text-[#000] dark:group-hover:text-[#FFF]">
+                      {formatEntryDateHeader(entry.date)}
+                    </span>
+                    {entry.mood && (
+                      <span
+                        className="inline-flex items-center gap-1 rounded-full bg-stone-200/70 dark:bg-stone-800 px-2 py-0.5 text-[11px] font-medium text-stone-700 dark:text-stone-300"
+                        title={`Mood Score: ${entry.mood.score}/5`}
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            entry.mood.score >= 4
+                              ? 'bg-emerald-500'
+                              : entry.mood.score === 3
+                              ? 'bg-amber-400'
+                              : 'bg-rose-400'
+                          }`}
+                        />
+                        <span>{entry.mood.label}</span>
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs text-[#8F8A82] dark:text-[#77726A]">
                     {entry.date}
                   </span>

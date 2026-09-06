@@ -23,8 +23,23 @@ service cloud.firestore {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
 
+      // Boards subcollection: isolated to owner only
+      match /boards/{boardId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Notes subcollection: isolated to owner only
+      match /notes/{noteId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
       // Proposals subcollection: human-in-the-loop proposals isolated to owner
       match /proposals/{proposalId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Coach sessions subcollection: multi-turn coach conversations isolated to owner
+      match /coachSessions/{sessionId} {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
 
