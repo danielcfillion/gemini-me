@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { RichText } from './RichText';
 import {
   CoachSession,
   CoachMessage,
@@ -387,7 +388,7 @@ export const CoachDrawer: React.FC<CoachDrawerProps> = ({
                       : 'bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-200 dark:border-stone-700/80 shadow-2xs rounded-bl-xs'
                   }`}
                 >
-                  <div className="whitespace-pre-wrap">{msg.text}</div>
+                  {isUser ? <div className="whitespace-pre-wrap">{msg.text}</div> : <RichText text={msg.text} />}
                 </div>
 
                 {/* Tool badge if tools were used */}

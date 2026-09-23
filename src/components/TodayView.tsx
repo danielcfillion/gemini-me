@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { RichText } from './RichText';
 import { UserProfile, JournalEntry, JournalMessage, Proposal, Board, Note } from '../types/journal';
 import {
   subscribeToEntry,
@@ -434,9 +435,10 @@ export const TodayView: React.FC<TodayViewProps> = ({ user }) => {
                           {formatTime(msg.ts)}
                         </span>
                       </div>
-                      <p className="font-journal text-[16px] sm:text-[17px] leading-relaxed text-[#514D47] dark:text-[#B5B0A8] whitespace-pre-wrap">
-                        {msg.text}
-                      </p>
+                      <RichText
+                        text={msg.text}
+                        className="font-journal text-[16px] sm:text-[17px] leading-relaxed text-[#514D47] dark:text-[#B5B0A8]"
+                      />
                     </div>
                   )}
                 </div>

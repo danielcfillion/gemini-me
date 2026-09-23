@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { RichText } from './RichText';
 import { UserProfile, JournalEntry } from '../types/journal';
 import { subscribeToUserEntries } from '../lib/firebase';
 import { formatEntryDateHeader, formatTime } from '../lib/dateUtils';
@@ -124,9 +125,10 @@ export const HistoryView: React.FC<HistoryViewProps> = ({ user }) => {
                         {formatTime(msg.ts)}
                       </span>
                     </div>
-                    <p className="font-journal text-[16px] leading-relaxed text-[#514D47] dark:text-[#B5B0A8] whitespace-pre-wrap">
-                      {msg.text}
-                    </p>
+                    <RichText
+                      text={msg.text}
+                      className="font-journal text-[16px] leading-relaxed text-[#514D47] dark:text-[#B5B0A8]"
+                    />
                   </div>
                 )}
               </div>

@@ -346,7 +346,8 @@ app.post('/api/summarize', async (req: Request, res: Response): Promise<void> =>
     const systemInstruction = `You are an editorial summarizer for Gemini Me.
 Task: Create a distilled 1 to 2 sentence summary of the user's day based solely on their journal writing.
 Guidelines:
-- Write in objective third person or concise passive tone (e.g. "Worked on project presentation, went for an evening walk, and felt relieved after finishing.").
+- Write in a concise, subject-less diary tone that starts with a verb (e.g. "Worked on project presentation, went for an evening walk, and felt relieved after finishing.").
+- Never refer to the writer with he, she, they, him, her, them, his, their, or "the user". Other people keep the names the writer used; the writer's own relationships are written as "a partner", "a friend", "family" and so on, never "his" or "their".
 - Be specific to events, feelings, or actions mentioned.
 - Do NOT use emojis.
 - Strict Anti-Em-Dash Rule: Mini-Me never uses em dashes (—), in the journal or anywhere else. Never output an em dash (—) or en dash (–).
