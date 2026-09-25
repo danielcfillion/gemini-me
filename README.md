@@ -4,6 +4,12 @@
 
 Built with Google AI Studio, Gemini, Firebase Authentication, Cloud Firestore, Secret Manager and Cloud Run for the Google Cloud GenAI Academy ideathon (#AccelerateAIwithCloudRun).
 
+[![Watch the 90-second demo](https://img.youtube.com/vi/bSEChdNcKNo/maxresdefault.jpg)](https://youtu.be/bSEChdNcKNo)
+
+- **Watch:** [90-second demo](https://youtu.be/bSEChdNcKNo)
+- **Try it:** [gemini-me-796412680695.asia-southeast1.run.app](https://gemini-me-796412680695.asia-southeast1.run.app)
+- **Read:** [I built a journal that learned to organise my life](https://medium.com/@danielcfillion/i-built-a-journal-that-learned-to-organise-my-life-fb112f7468e1) (Medium)
+
 ## What it does
 
 - **Daily journal.** One entry per day, written as a conversation. Mini-Me (Gemini) reflects back what it heard and asks at most two short follow-up questions. Warm or direct tone, your choice.
