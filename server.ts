@@ -718,6 +718,7 @@ Guidelines:
         {
           responseMimeType: 'application/json',
           responseSchema: EXTRACTION_SCHEMA,
+          maxOutputTokens: 8192,
         }
       );
       rawOutput = genResult.text;
@@ -734,6 +735,7 @@ Guidelines:
           {
             responseMimeType: 'application/json',
             responseSchema: EXTRACTION_SCHEMA,
+            maxOutputTokens: 8192,
           }
         );
         rawOutput = retryResult.text;
