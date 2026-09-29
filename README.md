@@ -4,9 +4,9 @@
 
 Built with Google AI Studio, Gemini, Firebase Authentication, Cloud Firestore, Secret Manager and Cloud Run for the Google Cloud GenAI Academy ideathon (#AccelerateAIwithCloudRun).
 
-[![Watch the 90-second demo](https://img.youtube.com/vi/bSEChdNcKNo/maxresdefault.jpg)](https://youtu.be/bSEChdNcKNo)
+[![Watch the 90-second demo](https://img.youtube.com/vi/0cyXfSXU14M/maxresdefault.jpg)](https://youtu.be/0cyXfSXU14M)
 
-- **Watch:** [90-second demo](https://youtu.be/bSEChdNcKNo)
+- **Watch:** [90-second demo](https://youtu.be/0cyXfSXU14M)
 - **Try it:** [gemini-me-796412680695.asia-southeast1.run.app](https://gemini-me-796412680695.asia-southeast1.run.app)
 - **Read:** [I built a journal that learned to organise my life](https://medium.com/@danielcfillion/i-built-a-journal-that-learned-to-organise-my-life-fb112f7468e1) (Medium)
 
